@@ -165,6 +165,7 @@ Dictionary::Dictionary(const Mat &_bytesList, int _markerSize, int _maxcorr, int
     dictEncoding = _dictEncoding;
 }
 
+
 bool Dictionary::readDictionary(const cv::FileNode& fn) {
     int nMarkers = 0, _markerSize = 0;
     if (fn.empty() || !readParameter("nmarkers", nMarkers, fn) || !readParameter("markersize", _markerSize, fn))
@@ -327,6 +328,7 @@ int Dictionary::getDistanceToId(InputArray bits, int id, bool allRotations) cons
     return currentMinDistance;
 }
 
+
 int Dictionary::getDistanceToId(InputArray onlyCellPixelRatio, int id, bool allRotations, float validBitIdThreshold) const {
 
     Mat onlyCellPixelRatioMat = onlyCellPixelRatio.getMat();
@@ -410,7 +412,7 @@ Mat Dictionary::getMarkerBits(int markerId, int rotationId) const {
     CV_Assert(markerId >= 0 && markerId < bytesList.rows);
     CV_Assert(rotationId >= 0 && rotationId < 4);
 
-    Mat bits;
+    Mat bits(markerSize, markerSize, CV_32F, Scalar::all(0));
     if(dictEncoding == DICT_ENCODING_CELL_RATIO) {
         Mat cellRatios = getCellRatiosFromRatioList(bytesList.rowRange(markerId, markerId + 1), markerSize, rotationId);
         cellRatios.convertTo(bits, CV_32F, 1.0 / 100.0);

@@ -389,7 +389,7 @@ static Mat _extractCellPixelRatio(InputArray _image, const vector<Point2f>& corn
   * White border error if 1 - cellPixelRatio > validBitIdThreshold
   * <=>  cellPixelRatio < 1 - validBitIdThreshold) -> invBorderErrors (inverted markers)
   */
- static void _getBorderErrors(const Mat &cellPixelRatio, int markerSize, int borderSize, float validBitIdThreshold,
+static void _getBorderErrors(const Mat &cellPixelRatio, int markerSize, int borderSize, float validBitIdThreshold,
     int &borderErrors, int &invBorderErrors) {
 
     int sizeWithBorders = markerSize + 2 * borderSize;
@@ -419,6 +419,7 @@ static Mat _extractCellPixelRatio(InputArray _image, const vector<Point2f>& corn
         }
     }
 }
+
 
 /** @brief Given a matrix containing the percentage of white pixels in each marker cell, returns the normalized marker confidence [0;1].
  * The confidence is defined as 1 - normalized uncertainty, where 1 describes a pixel perfect detection.
@@ -1410,8 +1411,8 @@ void ArucoDetector::refineDetectedMarkers(InputArray _image, const Board& _board
 
                 Mat onlyCellPixelRatio = cellPixelRatio(
                     Rect(detectorParams.markerBorderBits, detectorParams.markerBorderBits,
-                            cellPixelRatio.cols - 2 * detectorParams.markerBorderBits,
-                            cellPixelRatio.rows - 2 * detectorParams.markerBorderBits));
+                        cellPixelRatio.cols - 2 * detectorParams.markerBorderBits,
+                        cellPixelRatio.rows - 2 * detectorParams.markerBorderBits));
 
                 codeDistance = dictionary.getDistanceToId(onlyCellPixelRatio, undetectedMarkersIds[i],
                                                           false, detectorParams.validBitIdThreshold);
