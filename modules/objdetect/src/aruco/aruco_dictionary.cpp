@@ -344,19 +344,6 @@ int Dictionary::getDistanceToId(InputArray onlyCellPixelRatio, int id, bool allR
 }
 
 
-int Dictionary::getDistanceToId(InputArray onlyCellPixelRatio, int id, bool allRotations, float validBitIdThreshold) const {
-
-    Mat onlyCellPixelRatioMat = onlyCellPixelRatio.getMat();
-    CV_Assert(onlyCellPixelRatioMat.rows == markerSize && onlyCellPixelRatioMat.cols == markerSize);
-    CV_Assert(onlyCellPixelRatioMat.type() == CV_32FC1);
-    CV_Assert(id >= 0 && id < bytesList.rows);
-
-    int rotation = -1;
-    CellBitMasks cellBitMasks(onlyCellPixelRatioMat, markerSize, validBitIdThreshold);
-    return cellBitMasks.hammingDistanceToId(bytesList, id, allRotations, rotation);
-}
-
-
 void Dictionary::generateImageMarker(int id, int sidePixels, OutputArray _img, int borderBits) const {
     CV_Assert(sidePixels >= (markerSize + 2*borderBits));
     CV_Assert(id < bytesList.rows);
