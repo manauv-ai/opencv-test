@@ -54,11 +54,17 @@ class NewOpenCVTests(unittest.TestCase):
 
     def setUp(self):
         cv.setRNGSeed(10)
+        random.seed(0)
+        np.random.seed(0)
         self.image_cache = {}
 
     def hashimg(self, im):
         """ Compute a hash for an image, useful for image comparisons """
-        return hashlib.md5(im.tobytes()).hexdigest()
+        data = im.tobytes()
+        try:
+            return hashlib.md5(data, usedforsecurity=False).hexdigest()
+        except TypeError:
+            return hashlib.md5(data).hexdigest()
 
     if sys.version_info[:2] == (2, 6):
         def assertLess(self, a, b, msg=None):
