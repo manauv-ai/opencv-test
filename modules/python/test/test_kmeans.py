@@ -9,7 +9,6 @@ from __future__ import print_function
 
 import numpy as np
 import cv2 as cv
-from numpy import random
 import sys
 PY3 = sys.version_info[0] == 3
 if PY3:
@@ -22,11 +21,11 @@ def make_gaussians(cluster_n, img_size):
     ref_distrs = []
     sizes = []
     for _ in xrange(cluster_n):
-        mean = (0.1 + 0.8*random.rand(2)) * img_size
-        a = (random.rand(2, 2)-0.5)*img_size*0.1
+        mean = (0.1 + 0.8*np.random.rand(2)) * img_size
+        a = (np.random.rand(2, 2)-0.5)*img_size*0.1
         cov = np.dot(a.T, a) + img_size*0.05*np.eye(2)
-        n = 100 + random.randint(900)
-        pts = random.multivariate_normal(mean, cov, n)
+        n = 100 + np.random.randint(900)
+        pts = np.random.multivariate_normal(mean, cov, n)
         points.append( pts )
         ref_distrs.append( (mean, cov) )
         sizes.append(n)
