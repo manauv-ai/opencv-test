@@ -39,10 +39,10 @@ class mser_test(NewOpenCVTests):
 
         for _i in range(100):
 
-            use_big_image = random.choice([True, False])
-            invert = random.choice([True, False])
-            binarize = random.choice([True, False]) if use_big_image else False
-            blur = random.choice([True, False])
+            use_big_image = random.randint(0, 6) != 0
+            invert = random.randint(0, 1) != 0
+            binarize = (random.randint(0, 4) != 0) if use_big_image else False
+            blur = random.randint(0, 1) != 0
             thresh = random.choice([0, 70, 120, 180, 255])
             src0 = img if use_big_image else np.array(smallImg).astype('uint8')
             src = src0.copy()
