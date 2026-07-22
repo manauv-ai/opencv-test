@@ -1,5 +1,9 @@
 ## OpenCV: Open Source Computer Vision Library
 
+> **Note:** This repository (`manauv-ai/opencv-test`) is a fork of
+> [opencv/opencv](https://github.com/opencv/opencv) used for testing and
+> experimentation. It tracks upstream OpenCV; refer to the upstream project
+> for authoritative documentation, issues, and contribution workflows.
 
 ### Resources
 
