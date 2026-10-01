@@ -3,6 +3,7 @@
 
 ### Resources
 
+* [Repository code flow](CODE_FLOW.md)
 * Homepage: <https://opencv.org>
   * Courses: <https://opencv.org/courses>
 * Docs: <https://docs.opencv.org/4.x/>
